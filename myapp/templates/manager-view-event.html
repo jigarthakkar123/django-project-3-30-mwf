@@ -1,0 +1,59 @@
+{% extends 'manager-header.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    </head>
+    
+    <body>
+    
+
+    
+    
+
+    <!-- *** Venues & Tickets ***-->
+    <div class="venue-tickets">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="section-heading">
+                        <h2>My Events</h2>
+                    </div>
+                </div>
+                {% for i in events %}
+                <div class="col-lg-4">
+                    <div class="venue-item">
+                        <div class="thumb">
+                            <img src="{{i.event_image.url}}" alt="">
+                        </div>
+                        <div class="down-content">
+                            <div class="left-content">
+                                <div class="main-white-button">
+                                    <a href="{% url 'manager-edit-event' pk=i.pk %}">Edit</a>
+                                    <a href="{% url 'manager-delete-event' pk=i.pk %}">Delete</a>
+                                </div>
+                                
+                            </div>
+                            <div class="right-content">
+                                <h4>{{i.event_name}}</h4>
+                                <p>{{i.event_desc}}</p>
+                                
+                                <div class="price">
+                                    <span>1 ticket<br>from <em>{{i.event_price}} Rs.</em></span>
+                                </div>
+                            </div> 
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+
+    
+  </body>
+</html>
+{% endblock %}
